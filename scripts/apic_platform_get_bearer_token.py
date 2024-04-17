@@ -7,7 +7,7 @@ INFO = "[INFO]["+ FILE_NAME +"] - "
 
 def get_bearer_token(apic_platform_base_url, apic_mgmt_username, apic_mgmt_password, apic_mgmt_realm, apic_rest_clientid, apic_rest_clientsecret): 
     try:
-        url = "https://" + apic_platform_base_url + "/token"
+        url = "https://" + apic_platform_base_url + "/api/token"
         reqheaders = {
             "Content-Type" : "application/json",
             "Accept" : "application/json"
