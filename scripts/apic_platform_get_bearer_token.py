@@ -26,7 +26,6 @@ def get_bearer_token(apic_platform_base_url, apic_mgmt_username, apic_mgmt_passw
         print(INFO + "Url:", url)
         print(INFO + "Username:", apic_mgmt_username)
         print(INFO + "Client ID:", apic_rest_clientid)
-        print(reqJson)
         s = requests.Session()
         retries = Retry(total=3, backoff_factor=1, status_forcelist=[ 500, 502, 503, 504 ])
         s.mount(apic_platform_base_url, HTTPAdapter(max_retries=retries))
