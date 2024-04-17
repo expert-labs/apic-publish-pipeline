@@ -28,7 +28,7 @@ def get_bearer_token(apic_platform_base_url, apic_mgmt_username, apic_mgmt_passw
         print(INFO + "Client ID:", apic_rest_clientid)
         print("DEBUG" + reqJson)
 
-        response = requests.request("POST", url, headers=reqheaders, data=reqJson, vertify=False)
+        response = requests.request("POST", url, headers=reqheaders, data=reqJson)
 
         # s = requests.Session()
         # retries = Retry(total=3, backoff_factor=1, status_forcelist=[ 500, 502, 503, 504 ])
