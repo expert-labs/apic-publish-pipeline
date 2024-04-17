@@ -88,8 +88,8 @@ def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_prov
                 "Authorization" : "Bearer " + var_bearer_token
             }
 
-            print("DEBUG " + url)
-            print("DEBUG " + multiple_files)
+            # print("DEBUG " + url)
+            # print("DEBUG " + multiple_files)
 
             s = requests.Session()
             retries = Retry(total=3, backoff_factor=1, status_forcelist=[ 502, 503, 504 ])
@@ -151,11 +151,11 @@ def orchestrate():
                                                                     var_bearer_token)
                 # print("publish_resp: ",publish_resp)
                 if "errorresponse" in publish_resp:
-                    apic_publish_audit[product_file_name] = "FAILED " + str(publish_resp['errorresponse'])
+                    apic_publish_audit[product_file_name] = "FAILED" + publish_resp['errorresponse']
                 elif "state" in publish_resp:
                     apic_publish_audit[product_file_name] = "SUCCESS"
                 else:
-                    apic_publish_audit[product_file_name] = "FAILED " + str(publish_resp['errorresponse'])
+                    apic_publish_audit[product_file_name] = "FAILED" + publish_resp['errorresponse']
             
             print(INFO + "apic_publish_audit: ",apic_publish_audit)
             Audit_res.update_apic_publish_audit(WORKING_DIR_BASIC, apic_publish_audit)
