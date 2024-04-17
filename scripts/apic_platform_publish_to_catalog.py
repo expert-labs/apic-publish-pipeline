@@ -88,6 +88,9 @@ def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_prov
                 "Authorization" : "Bearer " + var_bearer_token
             }
 
+            print("DEBUG" + url)
+            print("DEBUG" + multiple_files)
+
             s = requests.Session()
             retries = Retry(total=3, backoff_factor=1, status_forcelist=[ 502, 503, 504 ])
             s.mount(url, HTTPAdapter(max_retries=retries))
