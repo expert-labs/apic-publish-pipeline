@@ -33,6 +33,7 @@ def get_bearer_token(apic_platform_base_url, apic_mgmt_username, apic_mgmt_passw
 
         response = s.post(url, headers=reqheaders, json=reqJson, verify=False, timeout=20)
         resp_json = response.json()
+        print(resp_json)
         return resp_json
     except Exception as e:
         err_resp = {
