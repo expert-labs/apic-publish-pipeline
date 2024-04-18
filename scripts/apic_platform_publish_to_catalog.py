@@ -23,15 +23,11 @@ def get_api_name_from_product(env_local_target_dir, product_file_name):
             dataMap = yaml.safe_load(f)
         if "product" in dataMap and "apis" in dataMap:
             for api_id, api_info in dataMap["apis"].items():
-                # api_id = item[0]
-                # api_info = item[1]
-                print("++++PRINTS DE API_ID, API_INFO, API_INFO.GET($REF)++++")
-                print(api_id)
-                print(api_info)
-                print(api_info.get("$ref"))
-                print("++++TERMINAN LOS PRINT++++")
-                # var_apilist.append(api["$ref"].remove(".yaml"))
-        print("DEBUG!!!! BORRAR DESPUES!! " + var_apilist)
+                if "$ref" in api_info:
+                    var_apilist.append(api_info["$ref"].remove(".yaml"))
+        print("DEBUG!!!!")
+        print(var_apilist)
+        print("BORRAR DESPUES!!")
     except Exception as e:
         raise Exception("[ERROR] - Exception in " + FILE_NAME + ": " + repr(e))
     return var_apilist
