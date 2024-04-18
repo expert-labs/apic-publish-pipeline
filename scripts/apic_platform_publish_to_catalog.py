@@ -147,8 +147,6 @@ def orchestrate():
                                                                     WORKING_DIR_BASIC,
                                                                     product_file_name,
                                                                     var_bearer_token)
-                print("publish_resp:")
-                print(publish_resp)
                 if "errorresponse" in publish_resp:
                     apic_publish_audit[product_file_name] = "FAILED" + publish_resp['errorresponse']
                 elif "state" in publish_resp:
