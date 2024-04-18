@@ -12,6 +12,7 @@ def readfile_myAudit(ENV_LOCAL_TARGET_DIR):
     myAudit = None
     if os.path.isfile(ENV_LOCAL_TARGET_DIR + "/" + AUDIT_FILENAME):
         with open(ENV_LOCAL_TARGET_DIR + "/" + AUDIT_FILENAME) as f:
+            print(f)
             myAudit = json.load(f)
     else:
         myAudit = {}
