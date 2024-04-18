@@ -57,7 +57,10 @@ def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_prov
     resp_json = {}
     try:
         url = "https://" + apic_platform_base_url + "/catalogs/" + apic_mgmt_provorg + "/" + apic_mgmt_catalog + "/publish?migrate_subscriptions=true"
-        
+        print("++++++DEBUG RESPONSE")
+        print(url)
+        print("++++++DEBUG RESPONSE")
+
         """ for single product with single api
         multipart_data = MultipartEncoder(
             fields={
@@ -155,7 +158,7 @@ def orchestrate():
                 elif "state" in publish_resp:
                     apic_publish_audit[product_file_name] = "SUCCESS"
                 else:
-                    # apic_publish_audit[product_file_name] = publish_resp['errorresponse']
+                    # apic_publish_audit[product_file_name] = xpublish_resp['errorresponse']
                     # COMENTADO PORQUE USA ERRORRESPONSE EN UN CASO EN EL QUE NO LO TIENE. ENTONCES ROMPE PORQUE NO ENCUENTRA LA KEY.
                     print("NO EXISTE ERRORRESPONSE EN LA RESPUESTA XD")
             
