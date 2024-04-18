@@ -139,9 +139,7 @@ def orchestrate():
                                             os.environ["PROV_ORG_CATALOG_NAME"], 
                                             var_bearer_token)
             apic_publish_audit = {}
-            print("DEBUGGGGG")
             print(var_product_tuple)
-            print("CIERRA DEBUGGGGG")
             for product_file_name in var_product_tuple:
                 publish_resp = publish_to_catalog_using_platform_api(environment_config["APIC_PLATFORM_API_URL"] + "/api",
                                                                     os.environ["PROV_ORG_TITLE"].strip().replace(" ","-").lower(),
@@ -150,11 +148,13 @@ def orchestrate():
                                                                     product_file_name,
                                                                     var_bearer_token)
                 if "errorresponse" in publish_resp:
-                    apic_publish_audit[product_file_name] = publish_resp['errorresponse']
+                    apic_publish_audit[product_file_name] = "FAIL " + publish_resp['errorresponse']
                 elif "state" in publish_resp:
                     apic_publish_audit[product_file_name] = "SUCCESS"
                 else:
-                    apic_publish_audit[product_file_name] = publish_resp['errorresponse']
+                    # apic_publish_audit[product_file_name] = publish_resp['errorresponse']
+                    # COMENTADO PORQUE USA ERRORRESPONSE EN UN CASO EN EL QUE NO LO TIENE. ENTONCES ROMPE PORQUE NO ENCUENTRA LA KEY.
+                    print("NO EXISTE ERRORRESPONSE EN LA RESPUESTA XD")
             
             print(INFO + "apic_publish_audit: ",apic_publish_audit)
             Audit_res.update_apic_publish_audit(WORKING_DIR_BASIC, apic_publish_audit)
