@@ -20,6 +20,8 @@ def get_api_name_from_product(env_local_target_dir, product_file_name):
     try:
         with open(env_local_target_dir + "/" + product_file_name) as f:
             # use safe_load instead load
+            print("printeando " + env_local_target_dir + "/" + product_file_name)
+            print(f)
             dataMap = yaml.safe_load(f)
             print("hola????")
             print(dataMap)
