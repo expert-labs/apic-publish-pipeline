@@ -21,10 +21,10 @@ def get_api_name_from_product(env_local_target_dir, product_file_name):
         with open(env_local_target_dir + "/" + product_file_name) as f:
             # use safe_load instead load
             print("printeando " + env_local_target_dir + "/" + product_file_name)
-            print(f)
             dataMap = yaml.safe_load(f)
             print("hola????")
             print(dataMap)
+            print("este fue el datamap")
         if "product" in dataMap and "apis" in dataMap:
             for api_id, api_info in dataMap["apis"].items():
                 if "name" in api_info:
