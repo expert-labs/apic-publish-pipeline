@@ -22,12 +22,14 @@ def get_api_name_from_product(env_local_target_dir, product_file_name):
             # use safe_load instead load
             dataMap = yaml.safe_load(f)
         if "product" in dataMap and "apis" in dataMap:
-            for item in dataMap["apis"].items():
-                api_id = item[0]
-                api_info = item[1]
-                print("+++++API ID " + api_id)
-                print("+++++API INFO " + api_info)
-                print("+++++API INFO.$REF " + api_info.get("$ref"))
+            for api_id, api_info in dataMap["apis"].items():
+                # api_id = item[0]
+                # api_info = item[1]
+                print("++++PRINTS DE API_ID, API_INFO, API_INFO.GET($REF)++++")
+                print(api_id)
+                print(api_info)
+                print(api_info.get("$ref"))
+                print("++++TERMINAN LOS PRINT++++")
                 # var_apilist.append(api["$ref"].remove(".yaml"))
         print("DEBUG!!!! BORRAR DESPUES!! " + var_apilist)
     except Exception as e:
