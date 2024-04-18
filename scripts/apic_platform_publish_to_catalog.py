@@ -31,10 +31,11 @@ def get_api_name_from_product(env_local_target_dir, product_file_name):
         #             var_apilist.append(api_info["name"].replace(":", "_"))
         if "product" in dataMap and "apis" in dataMap:
             for api in dataMap["apis"].items():
+                print("ASI QUEDARIA LO QUE VOY A AGREGAR A LA LISTA " + api["$ref"].remove(".yaml"))
                 var_apilist.append(api["$ref"].remove(".yaml"))
+        print("DEBUG!!!! BORRAR DESPUES!! " + var_apilist)
     except Exception as e:
         raise Exception("[ERROR] - Exception in " + FILE_NAME + ": " + repr(e))
-    print("DEBUG!!!! BORRAR DESPUES!! " + var_apilist)
     return var_apilist
 
 def delete_all_products(apic_platform_base_url, apic_mgmt_provorg, apic_mgmt_catalog, var_bearer_token): 
