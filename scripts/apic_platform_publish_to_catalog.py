@@ -30,7 +30,7 @@ def get_api_name_from_product(env_local_target_dir, product_file_name):
         #         if "name" in api_info:
         #             var_apilist.append(api_info["name"].replace(":", "_"))
         if "product" in dataMap and "apis" in dataMap:
-            for api in dataMap["apis"]:
+            for api in dataMap["apis"].items():
                 print(api)
                 print("este es el nombre de la api????")
                 var_apilist.append(api["$ref"].remove(".yaml"))
