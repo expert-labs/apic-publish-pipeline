@@ -88,9 +88,6 @@ def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_prov
                 "Authorization" : "Bearer " + var_bearer_token
             }
 
-            # print("DEBUG " + url)
-            # print("DEBUG " + multiple_files)
-
             s = requests.Session()
             retries = Retry(total=3, backoff_factor=1, status_forcelist=[ 502, 503, 504 ])
             s.mount(url, HTTPAdapter(max_retries=retries))
@@ -149,7 +146,7 @@ def orchestrate():
                                                                     WORKING_DIR_BASIC,
                                                                     product_file_name,
                                                                     var_bearer_token)
-                # print("publish_resp: ",publish_resp)
+                print("publish_resp: ",publish_resp)
                 if "errorresponse" in publish_resp:
                     apic_publish_audit[product_file_name] = "FAILED" + publish_resp['errorresponse']
                 elif "state" in publish_resp:
