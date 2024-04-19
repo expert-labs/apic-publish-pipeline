@@ -94,7 +94,7 @@ def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_prov
             #response = s.post(url, headers=reqheaders, data=multipart_data, verify=False, timeout=120)
             response = s.post(url, headers=reqheaders, files=multiple_files, verify=False, timeout=300)
             print(INFO + "Response:",response.status_code)
-            print("++++++DEBUG RESPONSE")
+            print("++++++DEBUG RESPONSE+++")
             print(response)
             print("++++++DEBUG RESPONSE")
             resp_json = response.json()
