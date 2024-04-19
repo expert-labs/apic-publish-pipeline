@@ -150,11 +150,11 @@ def orchestrate():
                                                                     product_file_name,
                                                                     var_bearer_token)
                 if "errorresponse" in publish_resp:
-                    apic_publish_audit[product_file_name] = "FAIL " + publish_resp['errorresponse']
+                    apic_publish_audit[product_file_name] = publish_resp['errorresponse']
                 elif "state" in publish_resp:
                     apic_publish_audit[product_file_name] = "SUCCESS"
                 else:
-                    # apic_publish_audit[product_file_name] = xpublish_resp['errorresponse']
+                    # apic_publish_audit[product_file_name] = publish_resp['errorresponse']
                     # COMENTADO PORQUE USA ERRORRESPONSE EN UN CASO EN EL QUE NO LO TIENE. ENTONCES ROMPE PORQUE NO ENCUENTRA LA KEY.
                     print("NO EXISTE ERRORRESPONSE EN LA RESPUESTA XD")
             
