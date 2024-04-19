@@ -23,8 +23,8 @@ def get_api_name_from_product(env_local_target_dir, product_file_name):
             dataMap = yaml.safe_load(f)
         if "product" in dataMap and "apis" in dataMap:
             for api_id, api_info in dataMap["apis"].items():
-                if "$ref" in api_info:
-                    var_apilist.append(api_info["$ref"].replace(".yaml", ""))
+                if "name" in api_info:
+                    var_apilist.append(api_info["name"].replace(":", "_"))
     except Exception as e:
         raise Exception("[ERROR] - Exception in " + FILE_NAME + ": " + repr(e))
     return var_apilist
@@ -57,10 +57,6 @@ def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_prov
     resp_json = {}
     try:
         url = "https://" + apic_platform_base_url + "/catalogs/" + apic_mgmt_provorg + "/" + apic_mgmt_catalog + "/publish?migrate_subscriptions=true"
-        print("++++++DEBUG RESPONSE")
-        print(url)
-        print("++++++DEBUG RESPONSE")
-
         """ for single product with single api
         multipart_data = MultipartEncoder(
             fields={
@@ -77,18 +73,18 @@ def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_prov
         
         product_file_name = product_file_name + '.yaml'
         
-        multiple_files = [('product',(product_file_name, open(env_local_target_dir + "/" + product_file_name, 'rb'), 'application/json'))]
+        multiple_files = [('product',(product_file_name, open(env_local_target_dir + "/" + product_file_name, 'rb'), 'application/yaml'))]
         var_apilist = get_api_name_from_product(env_local_target_dir, product_file_name)
 
         if var_apilist:
             print(INFO + "Publish product:", product_file_name)
             print(INFO + "with APIs:", var_apilist)
             for apiname in var_apilist:
-                multiple_files.append(('openapi', (apiname + '.yaml', open(env_local_target_dir+ "/" + apiname + '.yaml', 'rb'), 'application/json')))
+                multiple_files.append(('openapi', (apiname + '.yaml', open(env_local_target_dir+ "/" + apiname + '.yaml', 'rb'), 'application/yaml')))
 
             reqheaders = {
-                "Accept" : "application/json",
-                # "Content-Type": "multipart/form-data",
+                "Accept" : "*/*",
+                "Content-Type": "multipart/form-data",
                 "Authorization" : "Bearer " + var_bearer_token
             }
 
