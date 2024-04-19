@@ -73,14 +73,14 @@ def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_prov
         
         product_file_name = product_file_name + '.yaml'
         
-        multiple_files = [('product',(open(env_local_target_dir + "/" + product_file_name, 'rb'), 'application/yaml'))]
+        multiple_files = [('product',(product_file_name, open(env_local_target_dir + "/" + product_file_name, 'rb'), 'application/yaml'))]
         var_apilist = get_api_name_from_product(env_local_target_dir, product_file_name)
 
         if var_apilist:
             print(INFO + "Publish product:", product_file_name)
             print(INFO + "with APIs:", var_apilist)
             for apiname in var_apilist:
-                multiple_files.append(('openapi', (open(env_local_target_dir+ "/" + apiname + '.yaml', 'rb'), 'application/yaml')))
+                multiple_files.append(('openapi', (apiname + '.yaml', open(env_local_target_dir+ "/" + apiname + '.yaml', 'rb'), 'application/yaml')))
 
             reqheaders = {
                 "Accept" : "*/*",
@@ -149,8 +149,12 @@ def orchestrate():
                                                                     WORKING_DIR_BASIC,
                                                                     product_file_name,
                                                                     var_bearer_token)
+                print("++++++DEBUG")
+                print(publish_resp)
+                print("++++++DEBUG")
+                
                 if "errorresponse" in publish_resp:
-                    apic_publish_audit[product_file_name] = publish_resp['errorresponse']
+                    apic_publish_audit[product_file_name] = "FAIL " + publish_resp['errorresponse']
                 elif "state" in publish_resp:
                     apic_publish_audit[product_file_name] = "SUCCESS"
                 else:
