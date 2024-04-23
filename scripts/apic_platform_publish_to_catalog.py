@@ -140,7 +140,7 @@ def orchestrate():
             #                                os.environ["PROV_ORG_TITLE"].strip().replace(" ","-").lower(),
             #                                os.environ["PROV_ORG_CATALOG_NAME"], 
             #                                var_bearer_token)
-            #apic_publish_audit = {}
+            apic_publish_audit = {}
             for product_file_name in var_product_tuple:
                 publish_resp = publish_to_catalog_using_platform_api(environment_config["APIC_PLATFORM_API_URL"] + "/api",
                                                                     os.environ["PROV_ORG_TITLE"].strip().replace(" ","-").lower(),
