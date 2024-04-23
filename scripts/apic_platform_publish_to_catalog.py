@@ -84,7 +84,6 @@ def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_prov
 
             reqheaders = {
                 "Accept" : "*/*",
-                "Content-Type": "multipart/form-data",
                 "Authorization" : "Bearer " + var_bearer_token
             }
 
