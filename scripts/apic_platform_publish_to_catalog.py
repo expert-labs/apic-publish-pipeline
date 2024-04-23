@@ -56,7 +56,7 @@ def delete_all_products(apic_platform_base_url, apic_mgmt_provorg, apic_mgmt_cat
 def publish_to_catalog_using_platform_api(apic_platform_base_url, apic_mgmt_provorg, apic_mgmt_catalog, env_local_target_dir, product_file_name, var_bearer_token): 
     resp_json = {}
     try:
-        url = "https://" + apic_platform_base_url + "/catalogs/" + apic_mgmt_provorg + "/" + apic_mgmt_catalog + "/publish?migrate_subscriptions=true"
+        url = "https://" + apic_platform_base_url + "/catalogs/" + apic_mgmt_provorg + "/" + apic_mgmt_catalog # + "/publish?migrate_subscriptions=true"
         """ for single product with single api
         multipart_data = MultipartEncoder(
             fields={
