@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #######################################
-# Configuration Initialization Script 111#
+# Configuration Initialization Script #
 #######################################
 
 if [[ -z "$1" ]]
